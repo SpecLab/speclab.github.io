@@ -7,7 +7,7 @@ categories: ["BLOG"]
 tags: ["BLOG"]
 toc: true
 toclistyle:
-comments: true
+comments:
 visibility:
 mathjax: true
 mermaid: true

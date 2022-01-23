@@ -1,5 +1,5 @@
 title: SpecLab
-description: SpecLab blog.
+description: wiki SpecLab.
 sourcecode: "https://github.com/SpecLab/speclab.github.io"
 
 permalink: blog/:year/:month/:day/:title
