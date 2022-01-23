@@ -43,7 +43,7 @@ def isHostIgnoreStat(hostk):
             return True
         if re.findall("\\.({})$".format(host), hostk):
             return True
-    for host in ("sunocean.life", "hawkhai.com",):
+    for host in ("speclab.github.io",):
         if re.findall("^({})$".format(host), hostk):
             return True
         if re.findall("\\.({})$".format(host), hostk):

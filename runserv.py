@@ -4,12 +4,12 @@ sys.path.append("../")
 from pythonx.funclib import *
 from pythonx.pelib import mydllfunc
 
-GIT_URL = 'url: "https://blog.hawkhai.com"'
-GIT_URLx = 'urlx: "https://blog.hawkhai.com"'
+GIT_URL = 'url: "https://speclab.github.io"'
+GIT_URLx = 'urlx: "https://speclab.github.io"'
 GIT_BASEURL = 'baseurl: ""'
-SUN_URL = 'url: "https://sunocean.life"'
-SUN_URLx = 'urlx: "https://sunocean.life"'
-SUN_BASEURL = 'baseurl: "/blog"'
+SUN_URL = 'url: "speclab.github.io"'
+SUN_URLx = 'urlx: "https://speclab.github.io"'
+SUN_BASEURL = 'baseurl: ""'
 JEKYLL = "bundle exec jekyll serve --watch --host 0.0.0.0"
 
 def readfile(fpath):
@@ -74,8 +74,8 @@ def checkgit():
     os.system("git log -p _config.yml  > {}".format(ymlfile,))
     os.system("git log -p Gemfile.lock > {}".format(gemfile,))
 
-    checkgitline(ymlfile, "sunocean.life", "0d86ec78b65c032162ea43fe8abb13d79288ec3f")
-    checkgitline(gemfile, "wdm", "0d86ec78b65c032162ea43fe8abb13d79288ec3f")
+    #checkgitline(ymlfile, "speclab.github.io", "0d86ec78b65c032162ea43fe8abb13d79288ec3f")
+    #checkgitline(gemfile, "wdm", "0d86ec78b65c032162ea43fe8abb13d79288ec3f")
 
 def modifyconfig():
     print(LINE_SEP_SHORT)
