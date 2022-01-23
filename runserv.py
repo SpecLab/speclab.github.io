@@ -7,7 +7,7 @@ from pythonx.pelib import mydllfunc
 GIT_URL = 'url: "https://speclab.github.io"'
 GIT_URLx = 'urlx: "https://speclab.github.io"'
 GIT_BASEURL = 'baseurl: ""'
-SUN_URL = 'url: "speclab.github.io"'
+SUN_URL = 'url: "https://speclab.github.io"'
 SUN_URLx = 'urlx: "https://speclab.github.io"'
 SUN_BASEURL = 'baseurl: ""'
 JEKYLL = "bundle exec jekyll serve --watch --host 0.0.0.0"
