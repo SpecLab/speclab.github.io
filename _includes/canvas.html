@@ -1,0 +1,10 @@
+<div class="captioned-img align{{include.align}}">
+<canvas
+    class="glslCanvas"
+    {% if include.fragUrl %}
+        data-fragment-url="{{ include.fragUrl | prepend: site.baseurl }}"
+    {% endif %}
+    width="{{ include.width }}"
+    height="{{ include.height }}" />
+{% if include.caption %}{{ include.caption }}{% endif %}
+</div>

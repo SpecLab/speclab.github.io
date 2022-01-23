@@ -1,0 +1,17 @@
+{% if page.mathjax %}
+<script type="text/javascript">
+    var MathJaxLocalUrl = "{{ "/assets/mathjax.js" | prepend: site.baseurl | prepend: site.urlx }}";
+</script>
+
+<!-- https://jekyllrb.com/docs/liquid/filters/ -->
+<script type="text/javascript" charset="utf-8"
+    {% if site.urlx == "zz" %}
+    src="{{ "/assets/MathJax-2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" | prepend: site.baseurl }}"
+    {% else %}
+    src="//cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+    {% endif %}>
+</script>
+<script type="text/javascript" charset="utf-8"
+    src="{{ "/assets/mathjax.js" | prepend: site.baseurl }}" >
+</script>
+{% endif %}

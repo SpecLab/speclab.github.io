@@ -1,0 +1,21 @@
+---
+layout: default
+---
+<div class="post" id="postdiv">
+    <header class="post-header">
+        <h1>{{ page.title }}</h1>
+    </header>
+
+    {{ content }}
+
+    <hr/>
+<div class="block_section" id="section_info">
+{% if site.email_address %}
+    If you have any questions or feedback, please reach out <img src="{{ site.email_address | prepend: site.baseurl }}"/>.
+{% endif %}
+</div>
+
+</div>
+
+<script type="text/javascript" src="{{ "/assets/md5.min.js" | prepend: site.baseurl }}"></script>
+<script type="text/javascript" src="{{ "/assets/blog.js" | prepend: site.baseurl }}"></script>

@@ -1,0 +1,162 @@
+---
+layout: default
+---
+
+<div class="post{% if page.toclistyle == "none" %} toc-listyle-none{% endif %}{% unless page.codeprint %} codeprint{% endunless %}" id="postdiv">
+    <header class="post-header">
+    <h1 class="pagetitle">{{ page.title }}</h1>
+    <p class="post-meta">
+        Posted on {{ page.date | date: "%B %-d, %Y" }} {% if page.author %}by {{ page.author }}{% else %}{% if site.author.name %}by {{ site.author.name }}{% endif %}{% endif %}{% if page.location %} ({{ page.location }}){% endif %}
+        <br/>
+        <span class="pagetag">
+            {% for tag in page.tags %}
+                {% capture tagname %}{{ tag }}{% endcapture %}
+                <a href="{{ "/tags/tag?" | prepend: site.baseurl }}#{{ tagname }}"><code><nobr>{{ tagname }}</nobr></code>&nbsp;</a>
+            {% endfor %}
+            {% if page.visibility == "hidden" %}
+                <code><nobr>Hidden</nobr></code>&nbsp;
+            {% endif %}
+            {% if page.archived %}
+                <code><nobr>Archived</nobr></code>&nbsp;
+            {% endif %}
+        </span>
+    </p>
+{% include mathjax.html %}
+    </header>
+
+{% include toc.html %}
+
+<div id="blog_content">
+    {{ content }}
+</div>
+
+{% if page.cluster %}
+<div class="block_section" id="section_cluster">
+    <font class="blog_cluster">{{ page.cluster }} 系列文章</font>
+    <div><ul>
+    {% for post in site.posts %}{% if post.cluster == page.cluster %}
+    {% if post.visibility != "hidden" %}
+        <li>
+        {% if post.title != page.title %}<a href="{{ post.url | prepend: site.baseurl }}">{% endif %}
+        {{ post.title }} | {{ post.date | date_to_string }}
+        {% if post.title != page.title %}</a>{% endif %}
+        </li>
+    {% else %}
+        <li>
+        <font color="gray" style="text-decoration:line-through;">{{ post.title }} | {{ post.date | date_to_string }}</font>
+        </li>
+    {% endif %}
+    {% endif %}{% endfor %}
+    </ul></div>
+</div>
+{% endif %}
+
+    <hr/>
+{% if page.layoutclear == null %}
+<div class="block_section" id="section_info">
+<!-- https://shopify.dev/docs/themes/liquid/reference/filters/string-filters -->
+<!-- https://github.com/jekyll/jekyll/issues/2491 -->
+本文短链接：<a id="short_urlx" target="_blank" href="#"></a><br/>
+<script type="text/javascript">
+var shortPrex = "{{ '/t.htm?' | prepend: site.baseurl | prepend: site.urlx }}";
+var shortSeed = "{{ page.url | replace:'index.html','' }}";
+</script>
+
+{% if site.email_address %}
+    If you have any questions or feedback, please reach out <img src="{{ site.email_address | prepend: site.baseurl }}"/>.
+{% endif %}
+</div>
+    <hr/>
+    <div style="text-align:center" class="post-footer">
+        自由转载-非商用-非衍生-保持署名<br/>（创意共享 3.0 许可证）
+    </div>
+{% endif %}
+</div>
+
+{% if page.comments %}
+<hr/>
+<div id="gitalk-container"></div>
+<script>
+var gitalk = new Gitalk({
+    clientID: '3b135eabed2cc81330ed',
+    clientSecret: 'c7725b36f24e8ac53f2ad827f854947bb2648dfd',
+    repo: 'hawkhai.github.io',
+    owner: 'hawkhai',
+    admin: ['hawkhai'],
+    id: location.pathname,      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+});
+gitalk.render('gitalk-container');
+</script>
+{% endif %}
+
+{% if page.glslcanvas %}
+<script type="text/javascript" src="{{ "/assets/GlslCanvas.js" | prepend: site.baseurl }}"></script>
+{% endif %}
+
+<script type="text/javascript" src="{{ "/assets/md5.min.js" | prepend: site.baseurl }}"></script>
+<script type="text/javascript" src="{{ "/assets/blog.js" | prepend: site.baseurl }}"></script>
+
+{% if page.mermaid == true %}
+<!-- https://mermaid-js.github.io/mermaid/diagrams-and-syntax-and-examples/examples.html -->
+<!-- https://mermaid-js.github.io/mermaid-live-editor/ -->
+<script src="{{ "/assets/mermaid.min.js" | prepend: site.baseurl }}"></script>
+<script>mermaid.initialize({startOnLoad:true});</script>
+{% endif %}
+
+{% if page.flowchart == true %}
+<script type="text/javascript" src="{{ "/assets/raphael.min.js" | prepend: site.baseurl }}"></script>
+<script type="text/javascript" src="{{ "/assets/flowchart.min.js" | prepend: site.baseurl }}"></script>
+<script>
+// https://github.com/adrai/flowchart.js
+// https://bwmarrin.github.io/MkDocsPlus/flowchartjs/
+if (typeof jQuery != 'undefined') {
+    (function( $ ) {
+        $.fn.flowchart = function( options ) {
+            return this.each(function() {
+                var $this = $(this);
+                var $parent = $this.parent();
+                $parent.addClass("flowchart");
+                $this.addClass("flowchart");
+                var diagram = flowchart.parse($this.text());
+                $this.html('');
+                diagram.drawSVG(this, options);
+            });
+        };
+    })( jQuery );
+};
+var options = { theme: 'hand' };
+$(".language-flow").flowchart(options);</script>
+{% endif %}
+
+{% if page.l2dwidget == true %}
+<!-- https://raoenhui.github.io/js/2019/12/26/live2d/ -->
+<!-- 2d 前端妹子 start -->
+<!-- 萌萌哒二次元看板娘 -->
+<script src="https://l2dwidget.js.org/lib/L2Dwidget.min.js"></script>
+<script type="text/javascript">
+L2Dwidget.init({
+    dialog: {
+        enable: true,
+        script: {
+            'tap body': 'The quick brown fox jumps over the lazy dog.',
+            'tap face': 'Stay hungry. Stay foolish.'
+        },
+        "mobile": {"show": true}
+    }
+});
+</script>
+<style>
+@media all and (max-width: 900px) {
+    #live2d-widget {
+        transform-origin: 100% 100% 0;
+        transform: scale(0.5);
+        -ms-transform: scale(0.5);
+        -moz-transform: scale(0.5);
+        -webkit-transform: scale(0.5);
+        -o-transform: scale(0.5);
+    }
+}
+</style>
+<!-- 2d 前端妹子 end -->
+{% endif %}

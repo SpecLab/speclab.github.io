@@ -1,0 +1,410 @@
+.page {
+    margin: 0 auto;
+    max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit} * 2));
+    max-width:         calc(#{$content-width} - (#{$spacing-unit} * 2));
+    min-width: -webkit-calc(#{$content-min-width} - (#{$spacing-unit} * 2));
+    min-width:         calc(#{$content-min-width} - (#{$spacing-unit} * 2));
+    @include media-query($desktop) {
+        max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit}));
+        max-width:         calc(#{$content-width} - (#{$spacing-unit}));
+        min-width: -webkit-calc(#{$content-min-width} - (#{$spacing-unit} * 2));
+        min-width:         calc(#{$content-min-width} - (#{$spacing-unit} * 2));
+    }
+}
+
+.MathJax, .mjx-chtml {
+    outline: 0;
+}
+.MathJax_Display, .MJXc-display {
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+pre.flowchart, code.flowchart {
+    border: none;
+    background-color: inherit;
+}
+
+img.domaintag {
+    max-height: 1em;
+    max-width: 3em;
+    vertical-align: middle;
+}
+sub.domaintag_host {
+    vertical-align: baseline;
+    font-size: $small-font-size;
+    color: $text-link-color;
+}
+span.domaintag_sep {
+    color: $text-light-color;
+}
+img.domaintag.domaintag_bili {
+    max-height: 0.8em;
+    //margin-left: -0.5em;
+    //margin-right: -0.5em;
+    margin-bottom: 0.2em;
+}
+img.domaintag.domaintag_zhihu {
+    max-height: 0.8em;
+}
+img.domaintag.domaintag_wikipedia {
+    max-height: 0.8em;
+}
+img.domaintag.domaintag_keqq {
+    max-height: 1.5em;
+    max-width: 5em;
+}
+
+img.domaintag.domaintag_scriptol {
+    max-width: 4em;
+}
+img.domaintag.domaintag_khronos {
+    max-height: 1.5em;
+    max-width: 5em;
+    margin-left: -0.1em;
+    margin-right: -0.1em;
+}
+img.domaintag.domaintag_gluon {
+    max-height: 1.5em;
+    max-width: 4em;
+    margin-left: -0.2em;
+    margin-right: -0.2em;
+}
+
+// Clearfix
+%clearfix {
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+#blog_content {
+    line-height: $body-line-height;
+
+    pre, code {
+        line-height: $base-line-height * 1.3 / 1.5;
+        margin-top: 0.1em;
+    }
+
+    font.ref_snapshot + ul {
+        line-height: $base-line-height;
+
+        li {
+            padding-left: 0.5em;
+        }
+    }
+}
+
+.post {
+    @extend %clearfix;
+
+    del {
+        color: lightgray;
+        a {
+            color: $urldel-color;
+            &:hover {
+                color: $urldel-hover-color;
+            }
+        }
+    }
+
+    dl {
+        border: 1px solid #ddd;
+
+        dt {
+            background: #f5f5f5;
+            color: $grey-dark;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        dd {
+            padding: 5px 10px;
+        }
+    }
+
+    div.mermaid {
+        overflow-x: auto;
+        overflow-y: hidden;
+        height: auto;
+
+        svg {
+            height: auto;
+        }
+    }
+}
+
+// 外跳链接
+.post a[href^=http].ahref_withimg:after {
+    content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAVklEQVR4Xn3PgQkAMQhDUXfqTu7kTtkpd5RA8AInfArtQ2iRXFWT2QedAfttj2FsPIOE1eCOlEuoWWjgzYaB/IkeGOrxXhqB+uA9Bfcm0lAZuh+YIeAD+cAqSz4kCMUAAAAASUVORK5CYII=);
+    margin-left: .2em;
+    position: relative;
+    top: -.1em;
+}
+
+.post p {
+    margin-top: $spacing-unit * 0.5;
+    margin-bottom: $spacing-unit * 0.25;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+// hack ul li p
+.post ul li p {
+    margin-top: 0em;
+    margin-bottom: $spacing-unit * 0.5;
+}
+
+.post h1, h2, h3, h4, h5, h6 {
+    margin-top:    $spacing-unit * 0.7;
+    margin-bottom: $spacing-unit * 0.3;
+}
+
+.post-list {
+    margin-left: 0;
+    list-style: none;
+
+    > li {
+        margin-bottom: $spacing-unit;
+    }
+}
+
+.post-meta {
+    font-size: $small-font-size; // Posted on December 11, 2020 (珠海)
+    color: $text-light-color;
+}
+
+.post-link {
+    display: block;
+}
+
+.post table {
+    width: 100%;
+    display: table;
+    border-collapse: collapse;
+    margin-top: $spacing-unit * 0.5;
+    margin-bottom: $spacing-unit;
+    margin-left: auto;
+    margin-right: auto;
+}
+.post table th {
+    font-weight: 700;
+    background-color: #f5f5f5;
+}
+.post table td, .post table th {
+    padding: $spacing-unit * 0.2;
+    border: 1px solid #ddd;
+}
+.post table tr {
+    background-color: #fff;
+}
+.post table tr:nth-child(2n) {
+    background-color: #f5f5f5;
+}
+
+@include media-query($mobile) {
+    #tocwrap {
+        display: none;
+    }
+}
+
+.back-to-top {
+    cursor: pointer;
+}
+.back-to-top:hover {
+    color: $red;
+    font-weight: bold;
+    // font-style: normal;
+}
+
+#tocdiv.esa-catalog {
+    font-size: $medium-font-size; // 目录文字大小
+    position: fixed;
+    top: $spacing-unit;
+    left: $spacing-unit * 0.2;
+    width: auto;
+    height: 100%;
+    z-index: 1000;
+    min-width: 20em; // 存在代码依赖
+    max-width: 20em; // 存在代码依赖
+
+    ::marker {
+        font-size: $small-font-size;
+    }
+
+    ol, ul {
+        list-style-type: cjk-ideographic;
+
+        ol, ul {
+            list-style-type: decimal;
+
+            ol, ul {
+                list-style-type: lower-alpha;
+
+                ol, ul {
+                    list-style-type: lower-roman;
+
+                    ol, ul {
+                        list-style-type: lower-greek;
+                    }
+                }
+            }
+        }
+    }
+}
+
+#tocdiv.esa-catalog.toc-listyle-none {
+
+    ol, ul {
+        list-style-type: circle;
+
+        ol, ul {
+            list-style-type: lower-greek;
+
+            ol, ul {
+                list-style-type: none;
+
+                ol, ul {
+                    list-style-type: none;
+
+                    ol, ul {
+                        list-style-type: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+#tocdiv.esa-catalog > ol {
+    height: 90%; // js 会重新矫正
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin-left: 0em;
+}
+// 基本的。
+#tocdiv.esa-catalog > ol > li {
+    margin-left: $spacing-unit * 1.25;
+}
+// 十一 开始的 数字编号。
+#tocdiv.esa-catalog > ol > li:nth-child(1n+11) {
+    margin-left: $spacing-unit * 1.75;
+}
+#tocdiv.esa-catalog > ol > li:nth-child(1n+11) > ol {
+    margin-left: $spacing-unit * 0.50;
+}
+#tocdiv.esa-catalog.toc-listyle-none > ol > li:nth-child(1n+11) {
+    margin-left: $spacing-unit * 1.25;
+}
+// 二十一 开始的 数字编号。
+#tocdiv.esa-catalog > ol > li:nth-child(1n+21) {
+    margin-left: $spacing-unit * 2.25;
+}
+#tocdiv.esa-catalog.toc-listyle-none > ol > li:nth-child(1n+21) {
+    margin-left: $spacing-unit * 1.25;
+}
+
+#tocdiv.esa-catalog li.active > a {
+    font-weight: bold;
+}
+
+.post {
+    .counter-reset.h2counter        { counter-reset: h2counter; }
+    .counter-reset.h2counter:before { counter-reset: h3counter; }
+    .counter-reset.h2counter:after  { counter-reset: h4counter; }
+
+    .counter-reset.h3counter        { counter-reset: h3counter; }
+    .counter-reset.h3counter:before { counter-reset: h4counter; }
+
+    .counter-reset.h4counter        { counter-reset: h4counter; }
+}
+
+.post h1 {
+    counter-reset: h2counter;
+}
+.post h1:before {
+    counter-reset: h3counter;
+}
+.post h1:after {
+    counter-reset: h4counter;
+}
+.post h2 {
+    counter-increment: h2counter;
+    counter-reset: h3counter;
+}
+.post h2:before {
+    counter-reset: h4counter;
+    content: counter(h2counter, cjk-ideographic) '\3001';
+}
+.post.toc-listyle-none h2:before {
+    counter-reset: h4counter;
+    content: counter(h2counter, decimal-leading-zero) '. ';
+    color: #aaa;
+    font-style: italic;
+    font-size: 150%; // 列数字编号头
+}
+.post h3 {
+    counter-increment: h3counter;
+    counter-reset: h4counter;
+}
+.post h3:before {
+    content: counter(h2counter) "." counter(h3counter) " ";
+}
+.post h4 {
+    counter-increment: h4counter;
+}
+.post h4:before {
+    content: counter(h4counter, lower-alpha) "." " ";
+}
+
+.block_section {
+    margin-top:    $spacing-unit;
+    margin-bottom: $spacing-unit;
+}
+.block_section ul li {
+    font-size: $xsmall-font-size;
+}
+
+font.blog_cluster {
+    background: #f5f5f5;
+    padding: 5px 10px;
+    display: block;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+font.blog_cluster + div {
+    background: #fafafa;
+    border: 1px solid #ddd;
+    border-top-width: 0px;
+    padding: 5px 10px;
+    line-break: anywhere;
+    word-break: break-all;
+
+    ul {
+        margin-top: $spacing-unit * 0.5;
+        margin-bottom: $spacing-unit * 0.5;
+    }
+}
+
+font.ref_snapshot {
+    background: #f5f5f5;
+    padding: 5px 10px;
+    display: block;
+    text-align: center;
+    border: 1px solid #ddd;
+    margin-top: $spacing-unit * 0.5;
+}
+font.ref_snapshot + ul {
+    background: #fafafa;
+    font-size: $xsmall-font-size; // 外链快照
+    font-family: $tiny-font-family;
+    border: 1px solid #ddd;
+    border-top-width: 0px;
+    list-style: inside;
+    margin-left: 0em;
+    padding: 5px 10px;
+    line-break: anywhere;
+    word-break: break-all;
+    margin-bottom: $spacing-unit;
+}

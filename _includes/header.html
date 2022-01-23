@@ -1,0 +1,12 @@
+<header class="site-header">
+    <a class="site-title" href="{{ site.baseurl }}/">{{ site.title }}</a>
+    <nav class="site-nav">
+        <a href="#" class="menu-icon menu.open">
+            <object type="image/svg+xml" data="{{ "/assets/menu.open.svg" | prepend: site.baseurl }}" >
+            </object>
+        </a>
+        <div class="trigger"><h1>Main Navigation</h1>
+            {% include nav.html %}
+        </div>
+    </nav>
+</header>

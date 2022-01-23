@@ -1,0 +1,73 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+@charset "utf-8";
+
+// https://aillieo.cn/post/2017-01-15-opengl-es-glsl-02/
+// https://www.cnblogs.com/shangsi/articles/12212792.html
+// https://www.cdnfonts.com/scope-one.font
+// from blog.csdn.net
+// Sans-Serif 无衬线体
+// Serif 衬线字体
+// Sans-Serif -> Monospace 等宽字体
+$body-font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+$title-font-family: "comic sans ms", Verdana, Geneva, Arial, Helvetica, sans-serif;
+$code-font-family: Menlo, Monaco, Consolas, "Courier New", monospace, sans-serif;
+$tiny-font-family: $body-font-family;
+$base-font-weight: lighter;
+$large-font-size:  1.0em;
+$medium-font-size: 0.95em;
+$small-font-size:  smaller;
+$xsmall-font-size: small;
+$base-line-height: 1.5;
+$body-line-height: 1.5;
+$spacing-unit:     1.5em;
+
+$grey-vlight: #ddd;
+$grey-light:  #bbb;
+$grey:        #666;
+$grey-dark:   #333;
+$grey-vdark:  #000;
+$blue:        #0091ed;
+$blue-light:  #297fdf;
+$orange:      #ca6c18;
+$red:         #b6321c;
+
+$urldel-color:       lighten($red, 50%);
+$urldel-hover-color: lighten($orange, 50%);
+
+// $background:      $grey-vlight;
+$background:         #ffffff;
+$dark-background:    darken($background, 5%);
+$text-color:         $grey-vdark;
+$text-light-color:   $grey;
+$url-color:          $red;
+$url-hover-color:    $orange;
+$header-text-color:  $text-light-color;
+$header-hover-color: $text-color;
+$header-hover-url:   $url-color;
+$line-color:         $grey-light;
+$text-link-color:    $blue-light;
+
+// Width of the content area
+$content-width:     50em;//48em
+$content-min-width: 15em;
+$mobile:            32em;
+$desktop:           50em;
+
+@mixin media-query($device) {
+    @media screen and (max-width: $device) {
+        @content;
+    }
+}
+
+// Import partials from `sass_dir` (defaults to `_sass`)
+@import
+    "header",
+    "mobile-header",
+    "base",
+    "footer",
+    "page",
+    "syntax-highlighting",
+    "fancy-image"
+;

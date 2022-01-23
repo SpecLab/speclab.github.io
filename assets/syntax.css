@@ -1,0 +1,203 @@
+.codeprint .highlight table td { padding: 5px; }
+.codeprint .highlight table pre { margin: 0; }
+
+/* Sublime 的背景色为 #272822，Atom 的背景色为 #282C34 */
+.codeprint .highlight pre, .codeprint .highlight code {background-color:#272822;}
+
+.codeprint .highlight .gh {
+  color: #999999;
+}
+.codeprint .highlight .sr {
+  color: #f6aa11;
+}
+.codeprint .highlight .go {
+  color: #888888;
+}
+.codeprint .highlight .gp {
+  color: #555555;
+}
+.codeprint .highlight .gs {
+}
+.codeprint .highlight .gu {
+  color: #aaaaaa;
+}
+.codeprint .highlight .nb {
+  color: #f6aa11;
+}
+.codeprint .highlight .cm {
+  color: #75715e;
+}
+.codeprint .highlight .cp {
+  color: #75715e;
+}
+.codeprint .highlight .c1 {
+  color: #75715e;
+}
+.codeprint .highlight .cs {
+  color: #75715e;
+}
+.codeprint .highlight .c, .codeprint .highlight .ch, .codeprint .highlight .cd, .codeprint .highlight .cpf {
+  color: #75715e;
+}
+.codeprint .highlight .err {
+  color: #960050;
+}
+.codeprint .highlight .gr {
+  color: #960050;
+}
+.codeprint .highlight .gt {
+  color: #960050;
+}
+.codeprint .highlight .gd {
+  color: #49483e;
+}
+.codeprint .highlight .gi {
+  color: #49483e;
+}
+.codeprint .highlight .ge {
+  color: #49483e;
+}
+.codeprint .highlight .kc {
+  color: #66d9ef;
+}
+.codeprint .highlight .kd {
+  color: #66d9ef;
+}
+.codeprint .highlight .kr {
+  color: #66d9ef;
+}
+.codeprint .highlight .no {
+  color: #66d9ef;
+}
+.codeprint .highlight .kt {
+  color: #66d9ef;
+}
+.codeprint .highlight .mf {
+  color: #ae81ff;
+}
+.codeprint .highlight .mh {
+  color: #ae81ff;
+}
+.codeprint .highlight .il {
+  color: #ae81ff;
+}
+.codeprint .highlight .mi {
+  color: #ae81ff;
+}
+.codeprint .highlight .mo {
+  color: #ae81ff;
+}
+.codeprint .highlight .m, .codeprint .highlight .mb, .codeprint .highlight .mx {
+  color: #ae81ff;
+}
+.codeprint .highlight .sc {
+  color: #ae81ff;
+}
+.codeprint .highlight .se {
+  color: #ae81ff;
+}
+.codeprint .highlight .ss {
+  color: #ae81ff;
+}
+.codeprint .highlight .sd {
+  color: #e6db74;
+}
+.codeprint .highlight .s2 {
+  color: #e6db74;
+}
+.codeprint .highlight .sb {
+  color: #e6db74;
+}
+.codeprint .highlight .sh {
+  color: #e6db74;
+}
+.codeprint .highlight .si {
+  color: #e6db74;
+}
+.codeprint .highlight .sx {
+  color: #e6db74;
+}
+.codeprint .highlight .s1 {
+  color: #e6db74;
+}
+.codeprint .highlight .s, .codeprint .highlight .sa, .codeprint .highlight .dl {
+  color: #e6db74;
+}
+.codeprint .highlight .na {
+  color: #a6e22e;
+}
+.codeprint .highlight .nc {
+  color: #a6e22e;
+}
+.codeprint .highlight .nd {
+  color: #a6e22e;
+}
+.codeprint .highlight .ne {
+  color: #a6e22e;
+}
+.codeprint .highlight .nf, .codeprint .highlight .fm {
+  color: #a6e22e;
+}
+.codeprint .highlight .vc {
+  color: #ffffff;
+  background-color: #272822;
+}
+.codeprint .highlight .nn {
+  color: #ffffff;
+  background-color: #272822;
+}
+.codeprint .highlight .nl {
+  color: #ffffff;
+  background-color: #272822;
+}
+.codeprint .highlight .ni {
+  color: #ffffff;
+  background-color: #272822;
+}
+.codeprint .highlight .bp {
+  color: #ffffff;
+  background-color: #272822;
+}
+.codeprint .highlight .vg {
+  color: #ffffff;
+  background-color: #272822;
+}
+.codeprint .highlight .vi {
+  color: #ffffff;
+  background-color: #272822;
+}
+.codeprint .highlight .nv, .codeprint .highlight .vm {
+  color: #ffffff;
+  background-color: #272822;
+}
+.codeprint .highlight .w {
+  color: #ffffff;
+  background-color: #272822;
+}
+.codeprint .highlight {
+  color: #ffffff;
+  background-color: #272822;
+  border-radius: 4px;
+}
+.codeprint .highlight .n, .codeprint .highlight .py, .codeprint .highlight .nx {
+  color: #ffffff;
+  background-color: #272822;
+}
+.codeprint .highlight .ow {
+  color: #f92672;
+}
+.codeprint .highlight .nt {
+  color: #f92672;
+}
+.codeprint .highlight .k, .codeprint .highlight .kv {
+  color: #f92672;
+}
+.codeprint .highlight .kn {
+  color: #f92672;
+}
+.codeprint .highlight .kp {
+  color: #f92672;
+}
+.codeprint .highlight .o {
+  color: #f92672;
+}

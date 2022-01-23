@@ -1,0 +1,31 @@
+#!/bin/sh
+#
+# An example hook script to check the commit log message.
+# Called by "git commit" with one argument, the name of the file
+# that has the commit message.  The hook should exit with non-zero
+# status after issuing an appropriate message if it wants to stop the
+# commit.  The hook is allowed to edit the commit message file.
+#
+# To enable this hook, rename this file to "commit-msg".
+
+# Uncomment the below to add a Signed-off-by line to the message.
+# Doing this in a hook is a bad idea in general, but the prepare-commit-msg
+# hook is more suited to it.
+#
+# SOB=$(git var GIT_AUTHOR_IDENT | sed -n 's/^\(.*>\).*$/Signed-off-by: \1/p')
+# grep -qs "^$SOB" "$1" || echo "$SOB" >> "$1"
+
+# This example catches duplicate Signed-off-by lines.
+
+commit_msg=`cat $1`
+month=$(date "+%m0")
+msg_re="^\[.+\]\[$month[0-9]\] .*"
+week_num_of_month=$(((($(date +%d) - 1) / 7) + 1))
+if [[ ! $commit_msg =~ $msg_re ]]
+then
+    echo -e "\033[31m 不合法的 commit 消息提交格式，请使用正确的格式 \033[0m"
+    echo -e "\033[31m 正确的 commit 消息格式为 [product name][date(month,week)] message. \033[0m"
+    echo "eg: [pdfreader][$month$week_num_of_month] $commit_msg"
+    # 异常退出
+    exit 1
+fi
