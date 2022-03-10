@@ -59,20 +59,20 @@ def readfileIglist(fpath):
     return li
 
 def backupUrlContent(fpath, url):
-    for file in readfileIglist("mdrstrip_fileIgnore.txt"):
+    for file in readfileIglist("config/mdrstrip_fileIgnore.txt"):
         if url.endswith(file):
             return
     assert not url.endswith(".exe"), url
     assert not url.endswith(".zip"), url
     # 有可能挂掉的网站，都稍微做一下备份。
-    for host in readfileIglist("mdrstrip_hostIgnore.txt"):
+    for host in readfileIglist("config/mdrstrip_hostIgnore.txt"):
         if url.startswith(host):
             return
 
     print(fpath, url)
     chrome = True # 可能有 js 代码，所以必须都用 Chrome 进行缓存
     chromeDialog = False
-    for host in readfileIglist("mdrstrip_hostChrome.txt"):
+    for host in readfileIglist("config/mdrstrip_hostChrome.txt"):
         if url.startswith(host):
             chromeDialog = True
     mdname = os.path.split(fpath)[-1]
@@ -102,7 +102,7 @@ def backupUrlContent(fpath, url):
 
     mdxfile = False
     flocal = buildlocal(ttype)
-    if chrome and urlhostsrc in readfileIglist("mdrstrip_hostJekyll.txt"):
+    if chrome and urlhostsrc in readfileIglist("config/mdrstrip_hostJekyll.txt"):
         mdxfile = True
         ttype = ".md" # 借用 Jekyll 格式化
         newlocal = buildlocal(ttype)
@@ -127,7 +127,7 @@ def backupUrlContent(fpath, url):
     itag = bytesToString("无法访问此网站".encode("utf8"))
     itag2 = bytesToString('<div class="Qrcode-title">扫码登录</div>'.encode("utf8")) # 知乎的问题
     idata = bytesToString(fdata)
-    if not url in readfileIglist("mdrstrip_InvalidURL.txt"):
+    if not url in readfileIglist("config/mdrstrip_InvalidURL.txt"):
         if idata.find("ERR_CONNECTION_TIMED_OUT") != -1 or (
                 idata.find(itag) != -1 or idata.find(itag2) != -1):
             print("无法访问此网站", fpath, url)
@@ -179,13 +179,18 @@ title : %(title)s
 
     fmd5 = getFileMd5(flocal) # 大文件，错误已经铸成，改不了了。
     invdirlocal = isInvisibleDir(flocal)
-    mdrstripBigfileCfg = os.path.join("invisible" if invdirlocal else ".", "mdrstrip_bigfiles.txt")
+    mdrstripBigfileCfg = os.path.join("invisible" if invdirlocal else ".", "config/mdrstrip_bigfiles.txt")
     if not fmd5 in readfileIglist(mdrstripBigfileCfg):
         if len(fdata) >= 1024*1000*1:
             assert False, (len(fdata) / 1024.0 / 1000.0, url)
 
     remote = buildlocal(".html" if mdxfile else ttype).replace("\\", "/")
     touchSnapCache(urlmd5, flocal)
+
+    # protocol :// hostname[:port] / path / [:parameters][?query]#fragment
+    remotename = url.split("?")[0].split("#")[0].split("/")[-1]
+    if remotename in ("LICENSE-2.0",):
+        return remote
 
     # 外链类型 断言...
     if not remote.split(".")[-1] in ("pdf", "html", "git", "php", "c", "phtml", "cpp", "htm", "shtm", "xml",
@@ -211,7 +216,7 @@ def tidyupImgCollect(rootdir):
 # 本地图片缓存路径。
 def tidyupImg(imglocal, fpath, line):
 
-    if imglocal in readfileIglist("mdrstrip_fakefiles.txt"):
+    if imglocal in readfileIglist("config/mdrstrip_fakefiles.txt"):
         return line
 
     imgdir, imgfname = os.path.split(imglocal)
@@ -283,23 +288,31 @@ def tidyupImg(imglocal, fpath, line):
             #exit(0)
 
         # 小于 100K...
+        img = img.convert("RGB") #.convert("L")
         img.save(sizepath)
+        appendfile(sizepath, getFileMd5(tpath))
 
     # 检查缩略图。
     elif os.path.exists(sizepath):
-        img = Image.open(tpath)
-        width, height = img.size
-        try:
-            img = Image.open(sizepath)
-        except RuntimeError as ex: # could not create decoder object
-            print("Image.open RuntimeError", sizepath)
-            osremove(sizepath)
-            return tidyupImg(imglocal, fpath, line) # 存在问题，重新创建。
 
-        if img.size != (width, height): # 尺寸不对，重新创建。
-            img.close()
+        srcmd5 = readfile(sizepath, True)[-32:]
+        if getFileMd5(tpath) != srcmd5: # 原图变化了。
             osremove(sizepath)
             return tidyupImg(imglocal, fpath, line)
+
+        #img = Image.open(tpath)
+        #width, height = img.size
+        #try:
+        #    img = Image.open(sizepath)
+        #except RuntimeError as ex: # could not create decoder object
+        #    print("Image.open RuntimeError", sizepath)
+        #    osremove(sizepath)
+        #    return tidyupImg(imglocal, fpath, line) # 存在问题，重新创建。
+
+        #if img.size != (width, height): # 尺寸不对，重新创建。
+        #    img.close()
+        #    osremove(sizepath)
+        #    return tidyupImg(imglocal, fpath, line)
 
     imgtype = imgfname.split(".")[-1].lower()
     if not imgtype in ("pdf", "png", "jpg", "gif", "jpeg", "webp", "mp4", "zip", "bmp",):
@@ -357,7 +370,7 @@ def collectHost(fpath, line):
         checkz = line.split(url)
         for iline in checkz[1:]: # 检查网址的后继标记。
             checkli = ["", ")", "]", ">", " ", "*"]
-            for urli in readfileIglist("mdrstrip_urlIgnore.txt"):
+            for urli in readfileIglist("config/mdrstrip_urlIgnore.txt"):
                 if url.startswith(urli) and urli:
                     checkli.append(";")
                     checkli.append("\"")
@@ -403,10 +416,10 @@ def collectHost(fpath, line):
 
 # 语法高亮的 tag 检查。
 def loadRougifyList():
-    ROUGIFY_LIST_FILE = "rougify_list_json.txt"
+    ROUGIFY_LIST_FILE = "config/rougify_list_json.txt"
     ROUGIFY_LIST = readfileJson(ROUGIFY_LIST_FILE)
     if not ROUGIFY_LIST:
-        ROUGIFY_LIST_SRC = readfile("rougify_list.txt", True)
+        ROUGIFY_LIST_SRC = readfile("config/rougify_list.txt", True)
         ROUGIFY_LIST = re.findall("\n([^\\s:]+):", ROUGIFY_LIST_SRC, re.MULTILINE)
         ROUGIFY_LIST2 = re.findall("\\[\\s*aliases\\s*:(.*?)\\]", ROUGIFY_LIST_SRC)
         for temp in ROUGIFY_LIST2:
@@ -578,6 +591,7 @@ def mainfile(fpath, fname, ftype):
         return line.rstrip()
 
     print(fpath)
+    md5src = getFileMd5(fpath)
     try:
         lines = readfileLines(fpath, False, False, "utf8")
     except Exception as ex:
@@ -652,6 +666,7 @@ def mainfile(fpath, fname, ftype):
                     cnsign += regch # 中文符号
                 if G_CSCHAR.count(ch) == 0:
                     G_CSCHAR.append(ch)
+        cnregexc = cnregex[:]
         cnregex += cnsign # 中文汉字符号都来起。
 
         # 不能出现全角的空格。
@@ -736,9 +751,11 @@ def mainfile(fpath, fname, ftype):
         if isMdFile:
             lixyx = re.findall("[{}] [,()] [{}]".format(cnregex, cnregex), linec, re.IGNORECASE)
             lixyx.extend(re.findall("[{}] [,()]$".format(cnregex), linec, re.IGNORECASE))
+            lixyx.extend(re.findall("[{}][,;] [{}]".format(cnregexc, cnregexc), linec, re.IGNORECASE))
             if lixyx:
                 openTextFile(fpath)
-                print("中文符号问题 {}:{} \"{}\"".format(fpath, index+1, line))
+                print(lixyx)
+                print("中文符号问题 {}:{} \"{}\"".format(fpath, index+1, linec))
                 os.system("pause")
                 return mainfile(fpathsrc, fnamesrc, ftypesrc)
 
@@ -818,8 +835,16 @@ def mainfile(fpath, fname, ftype):
     # 移除康熙编码，会造成乱码。
     if not fname in ("2021-03-14-Equivalent-Unified-Ideograph.md",):
         page = TranslateKangXi(page)
-    writefile(fpath, page.encode("utf8"))
-    return errcnt
+
+    # 时间过长，如果被手工改了，这里会形成覆盖。
+    md5src2 = getFileMd5(fpath)
+    if md5src2 == md5src:
+        writefile(fpath, page.encode("utf8"))
+        return errcnt
+
+    print("文本中途被改过了。{}".format(fpath,))
+    os.system("pause")
+    return mainfile(fpathsrc, fnamesrc, ftypesrc)
 
 def viewchar(lichar, xfile, xmin, xmax):
     li = list(set("".join(lichar)))
@@ -864,7 +889,7 @@ def checkfilesize(fpath, fname, ftype):
             return
 
     invdir = isInvisibleDir(fpath)
-    mdrstripBigfileCfg = os.path.join("invisible" if invdir else ".", "mdrstrip_bigfiles.txt")
+    mdrstripBigfileCfg = os.path.join("invisible" if invdir else ".", "config/mdrstrip_bigfiles.txt")
     fmd5 = getFileMd5(fpath)
     if not mdrstripBigfileCfg in G_CHECKFSIZE_CFG.keys():
         G_CHECKFSIZE_CFG[mdrstripBigfileCfg] = set()
