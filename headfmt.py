@@ -227,4 +227,4 @@ if __name__ == "__main__":
     mainxtitle()
     mainxkey()
     print(parsePythonCmdx(__file__))
-    os.system(r"cd invisible & {} tempd.py encrypt".format(getPythonExe(),))
+    #os.system(r"cd invisible & {} tempd.py encrypt".format(getPythonExe(),))

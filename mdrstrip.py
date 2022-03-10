@@ -1011,5 +1011,5 @@ if __name__ == "__main__":
         maingo()
     else:
         main()
-        os.system(r"cd invisible & {} tempd.py encrypt".format(getPythonExe(),))
+        #os.system(r"cd invisible & {} tempd.py encrypt".format(getPythonExe(),))
     print(parsePythonCmdx(__file__))

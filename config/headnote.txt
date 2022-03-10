@@ -1,139 +1,38 @@
 {
-  "archived": [
-    "true"
-  ],
-  "author": [
-    "Ronen Slavin & Michael Maltsev",
-    "yqh",
-    "zm",
-    "丁香妈妈",
-    "帮杰",
-    "李梓豪",
-    "杨全海",
-    "豪哥"
-  ],
+  "author": [],
   "categories": [
-    "3D 引擎",
-    "BLOG",
-    "SPEC",
-    "图像处理",
-    "图形学",
-    "工作笔记",
-    "开发环境",
-    "数学",
-    "深度学习",
-    "生活",
-    "编程与调试",
-    "读书",
-    "音视频"
+    "BLOG"
   ],
-  "cluster": [
-    "BB",
-    "CMake",
-    "GAMES101 - 现代计算机图形学入门 - 闫令琪",
-    "Irrlicht OpenGL-ES2 Driver",
-    "LearnOpenGL",
-    "OpenGL Shader",
-    "Visual Studio",
-    "WinDBG",
-    "Windows 编程知识点",
-    "sdoc",
-    "编程指南"
-  ],
-  "codeprint": [
-    "true"
-  ],
-  "comments": [
-    "true"
-  ],
-  "date": [
-    "1970-03-22 06:45:43 +0800",
-    "1970-03-23 20:08:38 +0800"
-  ],
-  "glslcanvas": [
-    "true"
-  ],
-  "l2dwidget": [
-    "true"
-  ],
+  "codeprint": [],
+  "comments": [],
+  "glslcanvas": [],
   "layout": [
-    "bookshelf",
     "page",
     "post"
   ],
-  "layoutclear": [
-    "false"
-  ],
   "location": [
-    "Japan",
-    "Reason Software, USA",
-    "twiki",
-    "江门",
-    "珠海"
+    "Japan"
   ],
   "mathjax": [
     "true"
   ],
   "mermaid": [
-    "true",
-    "truez"
+    "true"
   ],
   "permalink": [
     "/",
-    "/about/",
-    "/bookshelf/",
-    "/disclaimer/"
-  ],
-  "sortrefs": [
-    "true"
+    "/about/"
   ],
   "tags": [
-    "Android",
-    "BAT",
-    "BLOG",
-    "C/C++",
-    "CMake",
-    "DirectX",
-    "FFmpeg",
-    "Irrlicht",
-    "Jekyll",
-    "Linux",
-    "Memory",
-    "Ogre3D",
-    "OpenCV",
-    "OpenGL",
-    "PDFium",
-    "Python",
-    "QT",
-    "SPEC",
-    "TortoiseGit",
-    "VMware",
-    "前端开发",
-    "图像处理",
-    "图形学",
-    "工作笔记",
-    "开发环境",
-    "数学",
-    "机器学习",
-    "死锁",
-    "深度学习",
-    "生活",
-    "编程",
-    "读书笔记",
-    "调试",
-    "音视频"
+    "BLOG"
   ],
   "title": [
-    "3D 引擎 Irrlicht -- Irrlicht 3D 代码简析",
-    "3D 引擎 Irrlicht -- Irrlicht 3D 学习笔记"
+    "BLOG -- start",
+    "wiki SpecLab"
   ],
   "toc": [
     "true"
   ],
-  "toclistyle": [
-    "none"
-  ],
-  "visibility": [
-    "hidden"
-  ]
+  "toclistyle": [],
+  "visibility": []
 }
